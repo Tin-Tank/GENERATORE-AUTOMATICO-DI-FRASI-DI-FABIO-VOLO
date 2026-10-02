@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frasi Motivazionali del Mattino</title>
+    <title>Pensiero Motivazionale</title>
 
     <!-- Meta tag per anteprima Social (Open Graph & Twitter) -->
-    <meta property="og:title" content="L'Ispirazione del Mattino">
-    <meta property="og:description" content="Trova la tua carica motivazionale per affrontare la giornata.">
+    <meta property="og:title" content="Pensiero Motivazionale">
+    <meta property="og:description" content="Una frase motivazionale per la tua giornata.">
     <meta property="og:image" content="generatore.jpg">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="L'Ispirazione del Mattino">
-    <meta name="twitter:description" content="Trova la tua carica motivazionale per affrontare la giornata.">
+    <meta name="twitter:title" content="Pensiero Motivazionale">
+    <meta name="twitter:description" content="Una frase motivazionale per la tua giornata.">
     <meta name="twitter:image" content="generatore.jpg">
 
     <!-- Favicon -->
@@ -37,26 +37,21 @@
     </style>
 </head>
 
-<body class="min-h-screen flex flex-col justify-between items-center p-4 sm:p-6 text-[#28150B]">
+<body class="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 text-[#28150B]">
 
     <main class="max-w-xl w-full mx-auto my-auto flex flex-col items-center">
         
-        <!-- Immagine Copertina -->
-        <div class="w-full rounded-2xl overflow-hidden shadow-lg border border-[#E2CBAD] mb-8">
-            <img src="generatore.jpg" alt="Ispirazione" class="w-full h-52 sm:h-64 object-cover">
-        </div>
-
         <!-- Box Frase Motivazionale -->
-        <div class="w-full bg-[#FDFBF7] rounded-3xl p-8 sm:p-10 shadow-md border border-[#E2CBAD]/80 text-center relative mb-8">
-            <p id="quoteOutput" class="quote-font italic text-2xl sm:text-3xl font-medium leading-relaxed text-[#28150B]">
-                "Caricamento dell'ispirazione..."
+        <div class="w-full bg-[#FDFBF7] rounded-3xl p-8 sm:p-12 shadow-lg border border-[#E2CBAD]/80 text-center relative mb-8">
+            <p id="quoteOutput" class="quote-font italic text-2xl sm:text-4xl font-medium leading-relaxed text-[#28150B]">
+                "Caricamento..."
             </p>
         </div>
 
         <!-- Pulsanti Azione -->
         <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
             <button onclick="generateQuote()" class="flex-1 bg-[#BE4B2A] hover:bg-[#8A5833] text-white font-semibold py-4 px-6 rounded-2xl shadow-md transition-all active:scale-95 flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <i class="fa-solid fa-rotate"></i>
                 <span>Nuova Frase</span>
             </button>
 
@@ -160,7 +155,7 @@
         function shareQuote() {
             if (navigator.share) {
                 navigator.share({
-                    title: 'Pensiero del Mattino',
+                    title: 'Pensiero Motivazionale',
                     text: `"${currentText}"`
                 }).catch(() => {});
             } else {
