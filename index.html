@@ -1,258 +1,898 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generatore Motivazionale Fabio Volo</title>
-  
-<meta property="og:image" content="https://lvolonte-hub.github.io/GENERATORE-AUTOMATICO-DI-FRASI-DI-FABIO-VOLO/generatore.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:title" content="Generatore di Frasi di Fabio Volo" />
-<meta property="og:description" content="Genera le tue frasi motivazionali in perfetto stile Fabio Volo!" />
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caffè & Aporia | Generatore Volo-Filosofico</title>
 
-  <style>
-    :root {
-      --bg-color: #f7f4ef;
-      --card-bg: #ffffff;
-      --text-color: #2b2b2b;
-      --accent-color: #d96b43;
-      --accent-hover: #b8542f;
-      --fb-color: #1877f2;
-      --fb-hover: #135ab7;
-    }
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    * {
-      box-sizing: border-box;
-    }
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Georgia', serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warmbg: '#FDFBF7',
+                        coffee: {
+                            50: '#FAF4ED',
+                            100: '#F2E5D5',
+                            200: '#E2CBAD',
+                            300: '#D1AC82',
+                            400: '#C08D5B',
+                            600: '#8A5833',
+                            800: '#4A2B18',
+                            900: '#28150B',
+                        },
+                        paper: '#F7EFE5',
+                        accent: '#BE4B2A'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    .container {
-      background-color: var(--card-bg);
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-      max-width: 650px;
-      width: 100%;
-      text-align: center;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
+    <style>
+        body {
+            background-color: #FAF4ED;
+            background-image: radial-gradient(#8A5833 0.5px, transparent 0.5px), radial-gradient(#8A5833 0.5px, #FAF4ED 0.5px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
 
-    .badge {
-      display: inline-block;
-      font-family: sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--accent-color);
-      background-color: rgba(217, 107, 67, 0.1);
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 15px;
-    }
+        .paper-card {
+            background: rgba(253, 251, 247, 0.96);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 45px -15px rgba(40, 21, 11, 0.08), 0 0 0 1px rgba(138, 88, 51, 0.12);
+        }
 
-    h1 {
-      font-size: 1.6rem;
-      font-weight: normal;
-      margin: 0 0 30px 0;
-      color: #4a4a4a;
-      line-height: 1.3;
-    }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #F2E5D5;
+            border-radius: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #C08D5B;
+            border-radius: 8px;
+        }
 
-    .quote-box {
-      min-height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 35px;
-      padding: 20px;
-      background-color: #fcfbf9;
-      border-radius: 12px;
-      border-left: 4px solid var(--accent-color);
-    }
+        @keyframes pulseSoft {
+            0%, 100% { box-shadow: 0 0 20px rgba(190, 75, 42, 0.25); transform: scale(1); }
+            50% { box-shadow: 0 0 35px rgba(190, 75, 42, 0.45); transform: scale(1.01); }
+        }
 
-    blockquote {
-      font-size: 1.25rem;
-      line-height: 1.6;
-      font-style: italic;
-      margin: 0;
-      color: #333333;
-    }
+        .pulse-btn {
+            animation: pulseSoft 3s infinite ease-in-out;
+        }
 
-    .buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        .slot-rolling {
+            animation: slotShake 0.12s infinite ease-in-out;
+        }
 
-    button {
-      font-family: sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    button:active {
-      transform: scale(0.97);
-    }
-
-    .btn-generate {
-      background-color: var(--accent-color);
-      color: white;
-    }
-
-    .btn-generate:hover {
-      background-color: var(--accent-hover);
-    }
-
-    .btn-share {
-      background-color: var(--fb-color);
-      color: white;
-    }
-
-    .btn-share:hover {
-      background-color: var(--fb-hover);
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background-color: #333;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-family: sans-serif;
-      font-size: 0.9rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-  </style>
+        @keyframes slotShake {
+            0% { transform: translateY(0px); opacity: 0.85; }
+            50% { transform: translateY(-2px); opacity: 0.5; }
+            100% { transform: translateY(2px); opacity: 0.85; }
+        }
+    </style>
 </head>
-<body>
 
-  <div class="container">
-    <div class="badge">Spinta Quotidiana</div>
-    <h1>Motivazione alla Fabio Volo</h1>
-    
-    <div class="quote-box">
-      <blockquote id="quote">Premi il pulsante per ritrovare la tua strada.</blockquote>
+<body class="font-sans text-coffee-900 min-h-screen flex flex-col justify-between selection:bg-accent selection:text-white">
+
+    <!-- Navbar Header -->
+    <header class="w-full border-b border-coffee-200/80 bg-coffee-50/90 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3.5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-3xl">☕</span>
+                <div>
+                    <h1 class="font-serif font-bold text-xl sm:text-2xl text-coffee-900 leading-tight">Caffè & Aporia</h1>
+                    <p class="text-[11px] sm:text-xs text-coffee-600 italic">Generatore Volo-Filosofico del Quotidiano</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleCustomModal()" class="flex items-center space-x-1.5 bg-coffee-100 hover:bg-coffee-200 text-coffee-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-plus text-accent"></i>
+                    <span class="hidden sm:inline">Aggiungi Modulo</span>
+                </button>
+                <button id="favoritesBtn" onclick="toggleFavoritesModal()" class="flex items-center space-x-2 bg-coffee-100 hover:bg-coffee-200 text-coffee-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all">
+                    <i class="fa-solid fa-bookmark text-accent"></i>
+                    <span>Preferiti</span>
+                    <span id="favBadge" class="bg-accent text-white text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 py-8 sm:py-10 w-full flex-grow flex flex-col items-center">
+        
+        <!-- Intro Hero -->
+        <div class="text-center mb-6 max-w-2xl">
+            <span id="combosCounter" class="inline-block px-4 py-1.5 bg-coffee-100 text-coffee-800 rounded-full text-xs font-bold tracking-wider uppercase mb-3 border border-coffee-200 shadow-sm">
+                <i class="fa-solid fa-calculator text-accent mr-1.5"></i>Oltre 4.100.000+ Combinazioni
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-coffee-900 mb-3 leading-snug">
+                Ispirazione quotidiana con <br class="hidden sm:block"/><span class="italic text-accent">cortocircuito dotto</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-coffee-600 leading-relaxed">
+                La poetica del primo mattino e delle brioche ancora calde incontra la fenomenologia dell'anima, la de-costruzione del quotidiano e l'esegesi del rimpianto.
+            </p>
+        </div>
+
+        <!-- Mode Navigation Tabs -->
+        <div class="flex bg-coffee-100 p-1 rounded-2xl mb-6 border border-coffee-200 text-xs sm:text-sm font-semibold">
+            <button id="tabMixer" onclick="switchTab('mixer')" class="px-5 py-2 rounded-xl transition-all bg-white text-coffee-900 shadow-sm">
+                <i class="fa-solid fa-dice mr-2 text-accent"></i>Slot Machine & Blocco Moduli
+            </button>
+            <button id="tabBuilder" onclick="switchTab('builder')" class="px-5 py-2 rounded-xl transition-all text-coffee-600 hover:text-coffee-900">
+                <i class="fa-solid fa-sliders mr-2 text-accent"></i>Costruttore Manuale
+            </button>
+        </div>
+
+        <!-- Quote Paper Card -->
+        <div class="w-full paper-card rounded-3xl p-6 sm:p-10 border border-coffee-200/80 mb-6 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute -top-6 -left-4 text-8xl font-serif text-coffee-200/20 select-none pointer-events-none">“</div>
+            <div class="absolute -bottom-10 -right-4 text-8xl font-serif text-coffee-200/20 select-none pointer-events-none">”</div>
+
+            <!-- Quote Header Metrics -->
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-coffee-200/60 pb-4 mb-6 text-xs text-coffee-600 font-medium">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-accent animate-ping"></span>
+                    <span id="quoteIdTag" class="font-mono text-[11px] text-coffee-700">Modulo [A.B.C.D]</span>
+                </div>
+                <div class="flex flex-wrap gap-2 text-xs font-serif">
+                    <span id="meterVolo" class="bg-coffee-100/90 px-2.5 py-1 rounded-lg text-coffee-800 border border-coffee-200">
+                        🥐 Tasso Voliano: <b class="text-accent font-sans">92%</b>
+                    </span>
+                    <span id="meterAporia" class="bg-coffee-100/90 px-2.5 py-1 rounded-lg text-coffee-800 border border-coffee-200">
+                        📚 Indice di Aporia: <b class="text-coffee-700 font-sans">88%</b>
+                    </span>
+                    <span id="meterBar" class="bg-coffee-100/90 px-2.5 py-1 rounded-lg text-coffee-800 border border-coffee-200 hidden md:inline-block">
+                        ☕ Temperatura Cappuccino: <b class="text-amber-700 font-sans">100%</b>
+                    </span>
+                </div>
+            </div>
+
+            <div id="viewMixer" class="space-y-4 my-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <!-- Module A Box -->
+                    <div id="boxA" class="p-3.5 bg-coffee-50/90 rounded-2xl border border-coffee-200 flex flex-col justify-between transition-all">
+                        <div class="flex items-center justify-between mb-2 text-coffee-600 font-bold uppercase text-[10px] tracking-wider">
+                            <span>A • Quotidiano Voliano</span>
+                            <button onclick="toggleLock('A')" id="lockBtnA" class="text-coffee-500 hover:text-accent font-semibold px-2 py-0.5 rounded-lg bg-coffee-100 transition-all">
+                                <i class="fa-solid fa-lock-open mr-1"></i>Sbloccato
+                            </button>
+                        </div>
+                        <p id="textA" class="font-serif italic text-base sm:text-lg text-coffee-900 leading-snug"></p>
+                    </div>
+
+                    <!-- Module B Box -->
+                    <div id="boxB" class="p-3.5 bg-coffee-50/90 rounded-2xl border border-coffee-200 flex flex-col justify-between transition-all">
+                        <div class="flex items-center justify-between mb-2 text-coffee-600 font-bold uppercase text-[10px] tracking-wider">
+                            <span>B • Filosofia Criptica</span>
+                            <button onclick="toggleLock('B')" id="lockBtnB" class="text-coffee-500 hover:text-accent font-semibold px-2 py-0.5 rounded-lg bg-coffee-100 transition-all">
+                                <i class="fa-solid fa-lock-open mr-1"></i>Sbloccato
+                            </button>
+                        </div>
+                        <p id="textB" class="font-serif italic text-base sm:text-lg text-coffee-900 leading-snug"></p>
+                    </div>
+
+                    <!-- Module C Box -->
+                    <div id="boxC" class="p-3.5 bg-coffee-50/90 rounded-2xl border border-coffee-200 flex flex-col justify-between transition-all">
+                        <div class="flex items-center justify-between mb-2 text-coffee-600 font-bold uppercase text-[10px] tracking-wider">
+                            <span>C • Saggezza del Bar</span>
+                            <button onclick="toggleLock('C')" id="lockBtnC" class="text-coffee-500 hover:text-accent font-semibold px-2 py-0.5 rounded-lg bg-coffee-100 transition-all">
+                                <i class="fa-solid fa-lock-open mr-1"></i>Sbloccato
+                            </button>
+                        </div>
+                        <p id="textC" class="font-serif italic text-base sm:text-lg text-coffee-900 leading-snug"></p>
+                    </div>
+
+                    <!-- Module D Box -->
+                    <div id="boxD" class="p-3.5 bg-coffee-50/90 rounded-2xl border border-coffee-200 flex flex-col justify-between transition-all">
+                        <div class="flex items-center justify-between mb-2 text-coffee-600 font-bold uppercase text-[10px] tracking-wider">
+                            <span>D • Paradosso Finale</span>
+                            <button onclick="toggleLock('D')" id="lockBtnD" class="text-coffee-500 hover:text-accent font-semibold px-2 py-0.5 rounded-lg bg-coffee-100 transition-all">
+                                <i class="fa-solid fa-lock-open mr-1"></i>Sbloccato
+                            </button>
+                        </div>
+                        <p id="textD" class="font-serif italic text-base sm:text-lg text-coffee-900 leading-snug"></p>
+                    </div>
+                </div>
+
+                <!-- Combined Full Quote Box -->
+                <div class="mt-6 pt-5 border-t border-coffee-200/80 text-center">
+                    <p id="fullQuoteOutput" class="font-serif text-xl sm:text-3xl text-coffee-900 leading-relaxed italic font-medium">
+                        "Catturando l'epifania..."
+                    </p>
+                </div>
+            </div>
+
+            <div id="viewBuilder" class="hidden space-y-4 py-2">
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase tracking-wider mb-1">Modulo A — Quotidiano Voliano (Incipit)</label>
+                    <select id="selectA" onchange="updateCustomQuote()" class="w-full bg-coffee-50 border border-coffee-200 rounded-xl p-2.5 text-xs sm:text-sm text-coffee-900 focus:outline-none focus:ring-2 focus:ring-accent">
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase tracking-wider mb-1">Modulo B — Epifania Dotta & Criptica</label>
+                    <select id="selectB" onchange="updateCustomQuote()" class="w-full bg-coffee-50 border border-coffee-200 rounded-xl p-2.5 text-xs sm:text-sm text-coffee-900 focus:outline-none focus:ring-2 focus:ring-accent">
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase tracking-wider mb-1">Modulo C — La Svolta del Bar</label>
+                    <select id="selectC" onchange="updateCustomQuote()" class="w-full bg-coffee-50 border border-coffee-200 rounded-xl p-2.5 text-xs sm:text-sm text-coffee-900 focus:outline-none focus:ring-2 focus:ring-accent">
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase tracking-wider mb-1">Modulo D — Il Finale Motivazionale Paradosso</label>
+                    <select id="selectD" onchange="updateCustomQuote()" class="w-full bg-coffee-50 border border-coffee-200 rounded-xl p-2.5 text-xs sm:text-sm text-coffee-900 focus:outline-none focus:ring-2 focus:ring-accent">
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Toolbar -->
+            <div class="mt-6 pt-5 border-t border-coffee-200/60 flex flex-wrap items-center justify-between gap-3">
+                <button id="speakBtn" onclick="speakQuote()" class="flex items-center space-x-2 text-xs sm:text-sm font-semibold text-coffee-800 hover:text-accent transition-colors bg-coffee-100 hover:bg-coffee-200/80 px-4 py-2 rounded-xl">
+                    <i class="fa-solid fa-volume-high text-base"></i>
+                    <span>Ascolta Narrazione</span>
+                </button>
+
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                    <button onclick="saveToFavorites()" class="p-2.5 text-coffee-800 hover:text-accent bg-coffee-100 hover:bg-coffee-200/80 rounded-xl transition-all" title="Salva nei Preferiti">
+                        <i class="fa-regular fa-bookmark text-base"></i>
+                    </button>
+                    <button onclick="copyQuote()" class="p-2.5 text-coffee-800 hover:text-accent bg-coffee-100 hover:bg-coffee-200/80 rounded-xl transition-all" title="Copia Testo per Social">
+                        <i class="fa-regular fa-copy text-base"></i>
+                    </button>
+                    <button onclick="shareQuoteCard()" class="flex items-center space-x-2 bg-coffee-800 hover:bg-coffee-900 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>Condividi</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Action Button -->
+        <button id="generateBtn" onclick="generateRandomQuote()" class="pulse-btn bg-accent hover:bg-amber-800 text-white font-semibold text-base sm:text-xl px-9 py-4 rounded-2xl shadow-xl transition-all transform active:scale-95 flex items-center space-x-3 mb-8 cursor-pointer">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span>Genera Epifania</span>
+        </button>
+
+    </main>
+
+    <!-- Modal 1: Add Custom Phrase Module -->
+    <div id="customModal" class="fixed inset-0 bg-coffee-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-coffee-50 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-coffee-200">
+            <div class="flex justify-between items-center pb-4 border-b border-coffee-200">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-feather text-accent text-xl"></i>
+                    <h3 class="font-serif font-bold text-2xl text-coffee-900">Aggiungi il Tuo Tocco</h3>
+                </div>
+                <button onclick="toggleCustomModal()" class="text-coffee-600 hover:text-coffee-900 p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 my-4">
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase mb-1">Seleziona Modulo Target</label>
+                    <select id="customModuleType" class="w-full bg-white border border-coffee-200 rounded-xl p-2.5 text-xs sm:text-sm">
+                        <option value="A">Modulo A — Quotidiano Voliano (Incipit)</option>
+                        <option value="B">Modulo B — Filosofia Criptica ed Erudita</option>
+                        <option value="C">Modulo C — Saggezza da Bar / Svolta Metaforica</option>
+                        <option value="D">Modulo D — Paradosso Motivazionale Finale</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-coffee-700 uppercase mb-1">La Tua Frase Personalizzata</label>
+                    <textarea id="customText" rows="3" placeholder="Es. la prospettiva eidetica del briochino al pistacchio..." class="w-full bg-white border border-coffee-200 rounded-xl p-3 text-xs sm:text-sm focus:ring-2 focus:ring-accent outline-none"></textarea>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t border-coffee-200 flex justify-end space-x-2 text-xs">
+                <button onclick="toggleCustomModal()" class="px-4 py-2 rounded-xl text-coffee-600 font-semibold">Annulla</button>
+                <button onclick="saveCustomModule()" class="bg-accent text-white px-5 py-2 rounded-xl font-semibold hover:bg-amber-800 transition-all">Aggiungi al Generatore</button>
+            </div>
+        </div>
     </div>
 
-    <div class="buttons">
-      <button class="btn-generate" onclick="generateQuote()">
-        <span>✨</span> Nuova Motivazione
-      </button>
-      <button class="btn-share" onclick="shareOnFacebook()">
-        <span>📘</span> Condividi su Facebook
-      </button>
+    <!-- Modal 2: Favorites Storage -->
+    <div id="favModal" class="fixed inset-0 bg-coffee-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-coffee-50 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-coffee-200 max-h-[85vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b border-coffee-200">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-heart text-accent text-xl"></i>
+                    <h3 class="font-serif font-bold text-2xl text-coffee-900">Aforismi Salvati</h3>
+                </div>
+                <button onclick="toggleFavoritesModal()" class="text-coffee-600 hover:text-coffee-900 p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div id="favList" class="my-4 overflow-y-auto custom-scroll flex-grow space-y-3 pr-2">
+            </div>
+
+            <div class="pt-4 border-t border-coffee-200 flex justify-between items-center text-xs">
+                <button onclick="exportFavoritesCSV()" class="text-coffee-700 hover:underline font-semibold">
+                    <i class="fa-solid fa-download mr-1"></i> Scarica CSV
+                </button>
+                <div class="space-x-2">
+                    <button onclick="clearAllFavorites()" class="text-red-600 hover:underline font-semibold">
+                        Svuota Lista
+                    </button>
+                    <button onclick="toggleFavoritesModal()" class="bg-coffee-800 text-white px-4 py-2 rounded-xl font-semibold">
+                        Chiudi
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div id="toast" class="toast">Frase copiata negli appunti! Ora incollala su Facebook.</div>
+    <!-- Toast Banner -->
+    <div id="toast" class="fixed bottom-6 right-6 bg-coffee-900 text-white text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transition-all duration-300 transform translate-y-20 opacity-0 pointer-events-none z-50">
+        <i id="toastIcon" class="fa-solid fa-check text-green-400"></i>
+        <span id="toastMsg">Messaggio di notifica</span>
+    </div>
 
-  <script>
-    const inizi = [
-      "Oggi smetti di aspettare il momento perfetto:",
-      "Guardati allo specchio e ricordati che",
-      "Il primo passo non ti porta dove vuoi andare, ma",
-      "Siamo tutti un po' rotti, ma ricordati che",
-      "Smetti di chiedere il permesso agli altri:",
-      "Non importa quante volte sei caduto nei tuoi errori,"
-    ];
+    <!-- Footer -->
+    <footer class="w-full border-t border-coffee-200/60 bg-coffee-100/50 py-6 text-center text-xs text-coffee-600">
+        <p class="font-semibold">Fabio Volo & Aporia Filosofica Generator © 2026</p>
+        <p class="mt-1 italic text-coffee-500">Pronto per il deployment su GitHub Pages • 4.1M+ Combinazioni</p>
+    </footer>
 
-    const preseDiCoscienza = [
-      "la felicità non è un traguardo da raggiungere al casello,",
-      "il coraggio non è non avere paura, ma",
-      "la vita vera inizia esattamente dove finiscono",
-      "le cose più belle accadono solo quando smetti di controllare tutto e",
-      "sei l'unico regista della tua storia e"
-    ];
+    <script>
+        // Massive Database with 45+ unique items for each of the 4 modules
+        // 45 * 45 * 45 * 45 = 4,100,625 unique combinations!
+        const database = {
+            A: [
+                "Certi sabati mattina ti svegli, guardi la tazza del latte e capisci che",
+                "Ho visto gente prendere il treno delle 7:15 senza sapere che",
+                "A volte l'amore è come quando cerchi le chiavi nella giacca e ritrovi",
+                "Non serve andare fino in India; basta un caffè al banco per intuire che",
+                "La pioggia sui vetri di un martedì di novembre ti ricorda sempre che",
+                "Se impari ad ascoltare il silenzio tra due fermate di metropolitana, scopri che",
+                "C'è un momentino preciso, verso il tramonto, in cui ti accorgi che",
+                "Mettersi il cappotto prima di uscire è un po' come accettare che",
+                "Guardando il vapore della brioche appena sfornata comprendi improvvisamente che",
+                "Quando aspetti il verde al semaforo insieme agli sconosciuti, senti che",
+                "L'odore del pane fresco la domenica mattina ha il potere di spiegarti che",
+                "Certi sguardi incrociati al banco del bar mentre giri il cucchiaino rivelano che",
+                "Sistemarsi la sciarpa quando tira vento a Milano è l'ennesima prova che",
+                "Ritrovare uno scontrino stropicciato nella tasca dei jeans significa semplicemente che",
+                "Aprire il frigorifero alle due di notte senza fame è solo il modo in cui",
+                "Quando senti la pioggia picchiettare sull'ombrello aperto, realizzi che",
+                "Far scaldare il motore dell'auto in un giorno di nebbia ti dimostra che",
+                "Correre per non perdere l'autobus e poi vederlo partire è la prova che",
+                "Vedere la nonna che aggiunge un pizzico di sale al sugo ti insegna che",
+                "Rileggere i vecchi messaggi archiviati sul cellulare ti fa capire che",
+                "Asciugarsi le mani nel grembiule prima di accendere la radio ti ricorda che",
+                "Camminare sulle foglie secche al parco in autunno significa scoprire che",
+                "Accendere la prima sigaretta o sorseggiare la prima spremuta d'arancia svela che",
+                "Aspettare che l'acqua della pasta bolla mentre fuori fa buio ti suggerisce che",
+                "Tagliare la crosta del pane ancora caldo prima di cena ti svela che",
+                "Guardare la gente che corre verso il posto di lavoro alle otto ti rammenta che",
+                "Dimenticare il cellulare sul comodino prima di uscire di casa dimostra che",
+                "Quando ti si spezza il biscotto dentro la tazza di tè caldo capisci che",
+                "Comprare un giornale in edicola solo per sentire l'odore della carta ti suggerisce che",
+                "Slacciarsi le scarpe subito dopo essere tornati a casa la sera significa che",
+                "Guardare le gocce d'acqua che scivolano sul parabrezza spento prova che",
+                "Rimanere due minuti in più sotto la doccia calda la mattina rivela che",
+                "Trovare una moneta da cinquanta centesimi sul fondo della borsa dimostra che",
+                "Vedere il cane che si stira al sole sul pavimento del corridoio suggerisce che",
+                "Sentire il sapore della prima ciliegia all'inizio dell'estate ti rammenta che",
+                "Sciogliere il cucchiaino di zucchero nel caffè senza fretta rivela che",
+                "Far bollire il bricco del latte la domenica mattina senza svegliare nessuno ti insegna che",
+                "Quando ti metti il maglione preferito quello un po' rovinato sui gomiti capisci che",
+                "Pulire lo specchio del bagno appannato dopo un bagno caldo ti dimostra che",
+                "Sentire la chiave che gira nella toppa quando torna qualcuno a cui vuoi bene ti ricorda che",
+                "Fare la spesa a stomaco vuoto prima di cena svela che",
+                "Leggere le ultime pagine di un libro sapendo che sta per finire ti insegna che",
+                "Aspettare che la moka inizi a salire mentre guardi fuori dalla finestra dimostra che",
+                "Raccogliere una conchiglia sulla spiaggia in pieno inverno suggerisce che",
+                "Ascoltare i passi del vicino al piano di sopra nelle serate di pioggia dimostra che"
+            ],
+            B: [
+                "l'ermeneutica della tua solitudine necessita di un'epoché fenomenologica,",
+                "l'ontologia del quotidiano e la surrettizia nozione di impermanenza",
+                "l'incommensurabile aporia tra la catarsi emotiva e l'entropia dei ricordi",
+                "l'ipostasi del desiderio risente dell'esegesi del non detto,",
+                "la dialettica immanente del destino scardina l'idiosincrasia della paura,",
+                "la teleologia dei tuoi passi altro non è che un'apocatastasi interiore,",
+                "la prosopopea della nostalgia si dissolve nell'alchimia della prassi,",
+                "l'analettica del rimpianto si scontra con la palingenesi del cuore,",
+                "la decostruzione post-moderna del sentimento soffre di eudaimonia incompiuta,",
+                "la tautologia del dolore incontra la tautocronia dell'anima,",
+                "il solipsismo affettivo richiede una ricognizione gnoseologica profonda,",
+                "l'anamnesi dell'infanzia ridetermina l'incommensurabilità del presente,",
+                "la dimensione noematica dell'abbraccio supera l'empirismo del quotidiano,",
+                "la sovrastruttura ideologica della colazione nega l'autenticità dell'essere,",
+                "l'incongruenza assiologica delle scelte umane rivela l'ipostasi dell'assurdo,",
+                "l'immanentismo trascendentale dei rimpianti subisce una deriva euristica,",
+                "l'intertestualità delle relazioni interpersonali genera un'entropia affettiva,",
+                "la perturbante atarassia del quotidiano svela la friabilità dell'io,",
+                "la prospettiva nomotetica dei sentimenti rifiuta l'idealismo romantico,",
+                "l'estetica del frammento richiede una rigenerazione ontologica immediata,",
+                "il determinismo storico della routine quotidiana comprime l'angoscia esistenziale,",
+                "la mimesi del desiderio soffoca l'autentica catarsi del profondo,",
+                "la fenomenologia del primo sguardo scompagina la semiotica dell'attesa,",
+                "la deriva decostruttivista dei ricordi alimenta un'aporia insanabile,",
+                "l'incommensurabile eudemonismo del momento presente scardina l'angst,",
+                "la contingenza categoriale dell'anima sfugge all'esegesi del tempo,",
+                "la struttura algebrica dei sentimenti soffre di un'incompleta eudaimonia,",
+                "l'asintoto relazionale dei desideri inespressi devia verso l'entropia,",
+                "la sincronicità junghiana degli incontri casuali ribalta l'epistemologia,",
+                "la pervasiva eteronomia della felicità necessita di un riscatto etico,",
+                "l'architettura nosologica delle ansie moderne richiede un'epoché rigorosa,",
+                "il prospettivismo prospettico delle illusioni sgombra il campo dalla doxa,",
+                "l'ineluttabile polisemia dei silenzi altera la semantica dell'amore,",
+                "la palingenesi gnoseologica della speranza smentisce il nichilismo imperante,",
+                "l'inconsistenza ontica delle scuse quotidiane smaschera l'ipocrisia dell'essere,",
+                "la riduzione eidetica delle sofferenze svela l'essenza stessa della gioia,",
+                "l'eterogenesi dei fini quotidiani travalica la pura immanenza biologica,",
+                "la semiosi illimitata dei gesti d'affetto sbaraglia l'empirismo spicciolo,",
+                "la dimensione escatologica della pausa caffè travalica l'orizzonte noetico,",
+                "la dialettica servo-padrone applicata alle aspettative del lunedì svela l'alienazione,",
+                "il panlogismo del destino si piega dinanzi all'accidentalità dell'amore,",
+                "la surrettizia teleologia del pianto purifica l'apparato percettivo,",
+                "la decostruzione ermeneutica del rimpianto reclama una metanoia urgente,",
+                "l'ontogenesi della speranza trascende la contingenza materiale degli eventi,",
+                "l'ipostatizzazione della malinconia soffoca l'afflato vitale del presente,"
+            ],
+            C: [
+                "e allora capisci che la vita non è una stazione di testa, ma",
+                "ed è lì che la tazzina vuota ti sorride e diventa",
+                "perché in fondo siamo tutti come quei libri lasciati sul comodino:",
+                "proprio come quando ti sposti di un metro sulla panchina per",
+                "proprio come quel profumo di pane fresco alle sei di mattina che",
+                "e pazienza se il semaforo resta rosso: la vera rivoluzione è",
+                "perché abbracciarsi forte non costa nulla, ma è",
+                "e allora ti tornano in mente i consigli di tua nonna quando diceva che",
+                "e scopri che ogni cicatrice è solo un francobollo per",
+                "perché rincorrere i sogni senza scarpe comode ti costringe a",
+                "e capisci che il barbone all'angolo aveva ragione quando ti suggeriva di",
+                "proprio come una vecchia canzone di De Gregori che ti spinge a",
+                "e poco importa se hai dimenticato l'ombrello a casa: l'essenziale è",
+                "perché stringere un volante nel traffico è solo un pretesto per",
+                "e allora ti rendi conto che la felicità non fa rumore, vuole solo",
+                "proprio come accendere la stufa a legna in montagna che ti invita a",
+                "e ti ricordi di quando giocavi a pallone in cortile e bastava",
+                "perché ogni pioggia prima o poi smette e la terra bagnata vuol solo",
+                "ed è esattamente come quando riapri la valigia del mare per",
+                "perché in fondo la felicità è come una margherita da",
+                "e allora capisci che non serve correre forte se il segreto è",
+                "proprio come soffiare sul tè troppo caldo prima di",
+                "e ti viene da sorridere perché ti accorgi che basta",
+                "perché ogni volta che cade una foglia l'albero si prepara a",
+                "ed è bellissimo capire che anche i treni in ritardo servono per",
+                "proprio come mettere i piedi nell'acqua fredda della riva per",
+                "perché a volte basta cambiare la traccia del disco per",
+                "e capisci che l'amore vero non chiede il permesso, preferisce",
+                "proprio come il profumo di caldarroste per strada che ti convince a",
+                "perché vivere non è accumulare oggetti, ma imparare a",
+                "ed è lì che capisci che anche un bicchiere vuoto serve per",
+                "proprio come il rumore dei passi sulla neve fresca che ti spinge a",
+                "perché ogni nodo alla gola si scioglie soltanto se impari a",
+                "e allora ritrovi la stessa pace di quando finisci un puzzle e puoi",
+                "proprio come quando trovi il posto per il parcheggio e decidi di",
+                "perché la vita non ti deve spiegazioni, vuole soltanto",
+                "ed è come guardare la luna da un finestrino della navetta per",
+                "proprio come far girare la giostra dei ricordi e scoprire che occorre",
+                "e capisci che il segreto è conservare le briciole per",
+                "perché anche il sole più luminoso si riposa la sera per",
+                "proprio come togliere la sabbia dai sandali alla fine di agosto per",
+                "e scopri che la tenerezza è una forma di coraggio per",
+                "perché la felicità è un bicchiere d'acqua regalato che ti spinge a",
+                "ed è come riordinare la cantina dei ricordi e scoprire come",
+                "perché ogni alba ha un suo profumo speciale che ti invita a"
+            ],
+            D: [
+                "lasciare la porta socchiusa all'inaspettato, prima che raffreddi la brioche.",
+                "far respirare la propria essenza e ricominciare a camminare a piedi nudi.",
+                "accettare che non tutte le risposte hanno bisogno di una domanda per fare male.",
+                "l'unico modo per fare pace con la propria teleologia senza perdere il tram.",
+                "ritrovare quel sapore di buono che credevi sparito sotto il pavimento.",
+                "fare un bel respiro, ordinare un altro cornetto e perdonarsi di esistere.",
+                "illuminare i dettagli invisibili che solo chi ha sofferto sa riconoscere.",
+                "lasciarsi sorprendere dalla vita, anche quando ha il sapore di un lunedì.",
+                "mordere la vita prima che sia la vita a chiedere il conto al tavolo.",
+                "ascoltare la propria pancia e regalarsi finalmente un giorno di pioggia.",
+                "scrivere la parola 'fine' con la consapevolezza che era solo l'incipit.",
+                "bere tutto d'un fiato il proprio destino senza chiedere il resto.",
+                "rimettere a posto i pezzi del cuore senza usare le istruzioni dell'IKEA.",
+                "guardare fuori dal finestrino e sorridere a chi non ci sta guardando.",
+                "accendere la musica al massimo e dimenticarsi dove si stava andando.",
+                "scendere alla fermata prima per regalarsi dieci minuti di meraviglia.",
+                "chiudere gli occhi, contare fino a tre e tuffarsi senza salvagente.",
+                "accarezzare le proprie fragilità come se fossero gatti randagi.",
+                "togliere la polvere dai desideri e rimetterli subito in vetrina.",
+                "custodire la propria imperfezione come l'opera d'arte più rara.",
+                "disegnare un sorriso sull'asfalto prima che passi la spazzatrice.",
+                "accettare la vertigine dell'imprevisto senza cercare il corrimano.",
+                "perdonarsi tutti gli errori commessi per troppa generosità d'animo.",
+                "custodire quel briciolo di follia che ci salva dalla banalità del quotidiano.",
+                "ascoltare il battito del proprio cuore senza cercare la sincronia perfetta.",
+                "scrivere un biglietto d'amore a se stessi e spedirlo senza affrancatura.",
+                "camminare a testa alta sotto la tempesta sapendo che il sole è solo in ritardo.",
+                "regalarsi il lusso di non avere ragione pur di salvare un abbraccio.",
+                "soffiare via le delusioni come se fossero semi di soffione nel vento.",
+                "scambiare la paura di sbagliare con la gioia irrazionale di tentare.",
+                "ringraziare anche le porte chiuse in faccia per averci indicato la finestra.",
+                "spalancare le finestre dell'anima e far entrare il profumo del mattino.",
+                "accendere un fiammifero nell'oscurità invece di maledire il buio.",
+                "smettere di misurare il tempo con l'orologio e iniziare a usarne il battito.",
+                "lasciare che il vento scompigli i pensieri prima di riordinare i sogni.",
+                "trasformare ogni goccia di pioggia in un pretesto per ballare in strada.",
+                "imparare a salutare le rondini prima che scenda di nuovo la sera.",
+                "stendere le proprie emozioni al sole prima che arrivi la prossima nebbia.",
+                "lasciare un pezzetto di se stessi ovunque senza mai impoverirsi.",
+                "ricordarsi che persino i fiori più belli nascono nel silenzio.",
+                "fare pace con le proprie imperfezioni prima che si raffreddi il caffè.",
+                "insegnare al cuore a battere fuori dal tempo e oltre ogni aporia.",
+                "regalare un sorriso al barista anche quando il resto del mondo ha il broncio.",
+                "custodire la propria poesia come un segreto bellissimo da condividere.",
+                "accettare che il viaggio sia più importante di qualsiasi destinazione."
+            ]
+        };
 
-    const azioniMotivazionali = [
-      "ti spingi un metro oltre la tua zona di comfort.",
-      "ti dai il permesso di sbagliare, di ridere e di riprovarci.",
-      "inizi a trattarti con lo stesso amore che regali a chi non lo merita.",
-      "chiudi quella porta che hai lasciato socchiusa per troppo tempo.",
-      "abbracci il disordine e decidi di fare comunque quel salto."
-    ];
+        let locks = { A: false, B: false, C: false, D: false };
+        let currentQuoteState = { A: 0, B: 0, C: 0, D: 0, fullText: "" };
+        let favorites = JSON.parse(localStorage.getItem('volo_favs_v3') || '[]');
 
-    const finaleIspirazionale = [
-      "E ricordati: il momento giusto è adesso.",
-      "Tutto il resto è solo rumore di fondo.",
-      "Fai un respiro profondo e vai a prenderti la tua vita.",
-      "Perché alla fine, ti meriti di essere felice."
-    ];
+        window.onload = function() {
+            updateCombosCounter();
+            populateSelects();
+            updateFavBadge();
+            generateRandomQuote();
+        };
 
-    let currentQuote = "";
+        function updateCombosCounter() {
+            const total = database.A.length * database.B.length * database.C.length * database.D.length;
+            document.getElementById('combosCounter').innerHTML = `<i class="fa-solid fa-calculator text-accent mr-1.5"></i>Oltre ${total.toLocaleString('it-IT')} Combinazioni Uniche`;
+        }
 
-    function getRandomItem(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
+        function populateSelects() {
+            ['A', 'B', 'C', 'D'].forEach(mod => {
+                const select = document.getElementById(`select${mod}`);
+                select.innerHTML = '';
+                database[mod].forEach((text, index) => {
+                    const opt = document.createElement('option');
+                    opt.value = index;
+                    opt.textContent = `${index + 1}. ${text.substring(0, 55)}...`;
+                    select.appendChild(opt);
+                });
+            });
+        }
 
-    function generateQuote() {
-      const p1 = getRandomItem(inizi);
-      const p2 = getRandomItem(preseDiCoscienza);
-      const p3 = getRandomItem(azioniMotivazionali);
-      const p4 = getRandomItem(finaleIspirazionale);
+        function toggleLock(moduleKey) {
+            locks[moduleKey] = !locks[moduleKey];
+            const btn = document.getElementById(`lockBtn${moduleKey}`);
+            const box = document.getElementById(`box${moduleKey}`);
 
-      currentQuote = `${p1} ${p2} ${p3} ${p4}`;
-      document.getElementById("quote").innerText = currentQuote;
-    }
+            if (locks[moduleKey]) {
+                btn.className = "text-white bg-accent font-semibold px-2 py-0.5 rounded-lg shadow-sm";
+                btn.innerHTML = `<i class="fa-solid fa-lock mr-1"></i>Bloccato`;
+                box.classList.add('ring-2', 'ring-accent/50', 'bg-coffee-100/60');
+            } else {
+                btn.className = "text-coffee-500 hover:text-accent font-semibold px-2 py-0.5 rounded-lg bg-coffee-100";
+                btn.innerHTML = `<i class="fa-solid fa-lock-open mr-1"></i>Sbloccato`;
+                box.classList.remove('ring-2', 'ring-accent/50', 'bg-coffee-100/60');
+            }
+        }
 
-    function showToast() {
-      const toast = document.getElementById("toast");
-      toast.classList.add("show");
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 3000);
-    }
+        function switchTab(mode) {
+            const btnMixer = document.getElementById('tabMixer');
+            const btnBuilder = document.getElementById('tabBuilder');
+            const viewMixer = document.getElementById('viewMixer');
+            const viewBuilder = document.getElementById('viewBuilder');
 
-    function shareOnFacebook() {
-      if (!currentQuote || currentQuote.includes("Premi il pulsante")) {
-        alert("Genera prima una frase!");
-        return;
-      }
+            if (mode === 'mixer') {
+                btnMixer.className = "px-5 py-2 rounded-xl transition-all bg-white text-coffee-900 shadow-sm";
+                btnBuilder.className = "px-5 py-2 rounded-xl transition-all text-coffee-600 hover:text-coffee-900";
+                viewMixer.classList.remove('hidden');
+                viewBuilder.classList.add('hidden');
+            } else {
+                btnBuilder.className = "px-5 py-2 rounded-xl transition-all bg-white text-coffee-900 shadow-sm";
+                btnMixer.className = "px-5 py-2 rounded-xl transition-all text-coffee-600 hover:text-coffee-900";
+                viewBuilder.classList.remove('hidden');
+                viewMixer.classList.add('hidden');
+                updateCustomQuote();
+            }
+        }
 
-      navigator.clipboard.writeText(currentQuote).then(() => {
-        showToast();
-        const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-        window.open(shareUrl, '_blank', 'width=600,height=400');
-      });
-    }
+        function generateRandomQuote() {
+            // Apply slot roll effect
+            ['A', 'B', 'C', 'D'].forEach(mod => {
+                if (!locks[mod]) {
+                    const textEl = document.getElementById(`text${mod}`);
+                    textEl.classList.add('slot-rolling');
+                }
+            });
 
-    // Genera la prima frase all'apertura
-    generateQuote();
-  </script>
+            setTimeout(() => {
+                const idxA = locks.A ? currentQuoteState.A : Math.floor(Math.random() * database.A.length);
+                const idxB = locks.B ? currentQuoteState.B : Math.floor(Math.random() * database.B.length);
+                const idxC = locks.C ? currentQuoteState.C : Math.floor(Math.random() * database.C.length);
+                const idxD = locks.D ? currentQuoteState.D : Math.floor(Math.random() * database.D.length);
 
+                currentQuoteState = {
+                    A: idxA, B: idxB, C: idxC, D: idxD,
+                    fullText: `${database.A[idxA]} ${database.B[idxB]} ${database.C[idxC]} ${database.D[idxD]}`
+                };
+
+                // Render UI Output
+                document.getElementById('textA').textContent = database.A[idxA];
+                document.getElementById('textB').textContent = database.B[idxB];
+                document.getElementById('textC').textContent = database.C[idxC];
+                document.getElementById('textD').textContent = database.D[idxD];
+                document.getElementById('fullQuoteOutput').textContent = `"${currentQuoteState.fullText}"`;
+
+                // Update selects
+                document.getElementById('selectA').value = idxA;
+                document.getElementById('selectB').value = idxB;
+                document.getElementById('selectC').value = idxC;
+                document.getElementById('selectD').value = idxD;
+
+                ['A', 'B', 'C', 'D'].forEach(mod => {
+                    document.getElementById(`text${mod}`).classList.remove('slot-rolling');
+                });
+
+                randomizeMeters();
+            }, 160);
+        }
+
+        function updateCustomQuote() {
+            const idxA = parseInt(document.getElementById('selectA').value);
+            const idxB = parseInt(document.getElementById('selectB').value);
+            const idxC = parseInt(document.getElementById('selectC').value);
+            const idxD = parseInt(document.getElementById('selectD').value);
+
+            currentQuoteState = {
+                A: idxA, B: idxB, C: idxC, D: idxD,
+                fullText: `${database.A[idxA]} ${database.B[idxB]} ${database.C[idxC]} ${database.D[idxD]}`
+            };
+
+            document.getElementById('textA').textContent = database.A[idxA];
+            document.getElementById('textB').textContent = database.B[idxB];
+            document.getElementById('textC').textContent = database.C[idxC];
+            document.getElementById('textD').textContent = database.D[idxD];
+            document.getElementById('fullQuoteOutput').textContent = `"${currentQuoteState.fullText}"`;
+
+            randomizeMeters();
+        }
+
+        function randomizeMeters() {
+            const voloScore = Math.floor(Math.random() * 25) + 75;
+            const aporiaScore = Math.floor(Math.random() * 30) + 70;
+            const barScore = Math.floor(Math.random() * 15) + 85;
+            
+            document.getElementById('meterVolo').innerHTML = `🥐 Tasso Voliano: <b class="text-accent font-sans">${voloScore}%</b>`;
+            document.getElementById('meterAporia').innerHTML = `📚 Indice di Aporia: <b class="text-coffee-700 font-sans">${aporiaScore}%</b>`;
+            document.getElementById('meterBar').innerHTML = `☕ Temperatura Cappuccino: <b class="text-amber-700 font-sans">${barScore}%</b>`;
+            document.getElementById('quoteIdTag').textContent = `Modulo [${currentQuoteState.A + 1}.${currentQuoteState.B + 1}.${currentQuoteState.C + 1}.${currentQuoteState.D + 1}]`;
+        }
+
+        function speakQuote() {
+            if (!('speechSynthesis' in window)) {
+                showToast("Sintesi vocale non supportata nel tuo browser.", "error");
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(currentQuoteState.fullText);
+            utterance.lang = 'it-IT';
+            utterance.pitch = 0.92;
+            utterance.rate = 0.88;
+
+            const speakBtn = document.getElementById('speakBtn');
+            const originalHTML = speakBtn.innerHTML;
+
+            utterance.onstart = () => {
+                speakBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-accent"></i><span>Lettura in corso...</span>`;
+            };
+
+            utterance.onend = utterance.onerror = () => {
+                speakBtn.innerHTML = originalHTML;
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function copyQuote() {
+            const textToCopy = `"${currentQuoteState.fullText}"\n\n— Generato da Caffè & Aporia (#FabioVolo #AporiaDelLunedì #FilosofiaDaBar)`;
+            
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("Aforisma copiato negli appunti!");
+            } catch (err) {
+                showToast("Impossibile copiare il testo", "error");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function shareQuoteCard() {
+            const formatted = `☕ *Aporia del Mattino* 🥐\n\n"${currentQuoteState.fullText}"\n\n#FabioVolo #AporiaDelLunedì #FilosofiaDaBar`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Aforisma Volo-Filosofico',
+                    text: formatted
+                }).catch(() => {});
+            } else {
+                copyQuote();
+            }
+        }
+
+        function toggleCustomModal() {
+            const modal = document.getElementById('customModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function saveCustomModule() {
+            const moduleType = document.getElementById('customModuleType').value;
+            const customText = document.getElementById('customText').value.trim();
+
+            if (!customText) {
+                showToast("Inserisci un testo valido!", "error");
+                return;
+            }
+
+            database[moduleType].push(customText);
+            populateSelects();
+            updateCombosCounter();
+            toggleCustomModal();
+            document.getElementById('customText').value = '';
+            showToast(`Aggiunto nuovo Modulo ${moduleType}!`);
+        }
+
+        function saveToFavorites() {
+            const exists = favorites.some(f => f.fullText === currentQuoteState.fullText);
+            if (exists) {
+                showToast("Aforisma già presente nei preferiti!");
+                return;
+            }
+
+            favorites.unshift({ ...currentQuoteState, date: new Date().toLocaleDateString('it-IT') });
+            localStorage.setItem('volo_favs_v3', JSON.stringify(favorites));
+            updateFavBadge();
+            showToast("Aggiunto ai Preferiti!");
+        }
+
+        function updateFavBadge() {
+            document.getElementById('favBadge').textContent = favorites.length;
+        }
+
+        function toggleFavoritesModal() {
+            const modal = document.getElementById('favModal');
+            if (modal.classList.contains('hidden')) {
+                renderFavoritesList();
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function renderFavoritesList() {
+            const listEl = document.getElementById('favList');
+            listEl.innerHTML = '';
+
+            if (favorites.length === 0) {
+                listEl.innerHTML = `
+                    <div class="text-center py-8 text-coffee-600 italic">
+                        Non hai ancora salvato alcuna perla di saggezza.
+                    </div>
+                `;
+                return;
+            }
+
+            favorites.forEach((fav, index) => {
+                const item = document.createElement('div');
+                item.className = "p-4 bg-white rounded-2xl border border-coffee-200 shadow-sm flex flex-col justify-between space-y-3";
+                item.innerHTML = `
+                    <p class="font-serif italic text-coffee-900 text-sm sm:text-base leading-relaxed">"${fav.fullText}"</p>
+                    <div class="flex items-center justify-between text-xs text-coffee-600 border-t border-coffee-100 pt-2">
+                        <span>Salvato il ${fav.date}</span>
+                        <div class="space-x-3">
+                            <button onclick="copyFavText(${index})" class="text-coffee-700 hover:text-accent font-semibold">
+                                <i class="fa-regular fa-copy mr-1"></i>Copia
+                            </button>
+                            <button onclick="deleteFavorite(${index})" class="text-red-500 hover:text-red-700 font-semibold">
+                                <i class="fa-solid fa-trash-can mr-1"></i>Rimuovi
+                            </button>
+                        </div>
+                    </div>
+                `;
+                listEl.appendChild(item);
+            });
+        }
+
+        function copyFavText(index) {
+            const text = `"${favorites[index].fullText}"\n\n#FabioVolo #AporiaDelLunedì`;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast("Frase copiata!");
+        }
+
+        function deleteFavorite(index) {
+            favorites.splice(index, 1);
+            localStorage.setItem('volo_favs_v3', JSON.stringify(favorites));
+            updateFavBadge();
+            renderFavoritesList();
+            showToast("Rimosso dai preferiti");
+        }
+
+        function clearAllFavorites() {
+            if (favorites.length === 0) return;
+            favorites = [];
+            localStorage.setItem('volo_favs_v3', JSON.stringify(favorites));
+            updateFavBadge();
+            renderFavoritesList();
+            showToast("Tutti i preferiti sono stati cancellati");
+        }
+
+        function exportFavoritesCSV() {
+            if (favorites.length === 0) {
+                showToast("Nessun preferito da scaricare!", "error");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,Data,Frase Aforisma\n";
+            favorites.forEach(f => {
+                const cleanText = f.fullText.replace(/"/g, '""');
+                csvContent += `"${f.date}","${cleanText}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "aforismi_volo_filosofici.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.textContent = message;
+            if (type === "error") {
+                toastIcon.className = "fa-solid fa-triangle-exclamation text-red-400";
+            } else {
+                toastIcon.className = "fa-solid fa-check text-green-400";
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 2800);
+        }
+    </script>
 </body>
 </html>
